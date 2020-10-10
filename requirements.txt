@@ -3,3 +3,4 @@ opencv-python
 praw
 python-dotenv
 tinydb
+python-twitter

@@ -12,6 +12,7 @@ def _get_image_from_url(url):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     return gray
 
+
 def is_cat(image_url):
     image = _get_image_from_url(image_url)
     detector = cv2.CascadeClassifier(HAAR_CASCADE_LOC)
