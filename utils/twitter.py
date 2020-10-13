@@ -20,4 +20,7 @@ class Twitter:
         post = db.get_post()
         if post:
             status = "Reposted from Reddit. Author: %s" % post.get("author")
-            self.twitter.PostUpdate(status=status, media=post.get("url"))
+            try:
+                self.twitter.PostUpdate(status=status, media=post.get("url"))
+            except twitter.error.TwitterError:
+                pass

@@ -15,7 +15,7 @@ def main():
 
 
 class RedditRunner(Thread):
-    def __init__(self, interval=60*10):
+    def __init__(self, interval=60):
         self.interval = interval
         Thread.__init__(self)
         self.daemon = True

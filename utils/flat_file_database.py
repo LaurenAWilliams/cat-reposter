@@ -8,18 +8,17 @@ class FlatFileDB:
         self._lock = threading.Lock()
 
     def insert_post(self, submission):
-        while self._lock:
-            if not self._post_exists(submission):
-                self.db.insert(
-                    {'id': submission.id, 'url': submission.url, 'author': submission.author.name, 'posted': False})
+        if not self._post_exists(submission):
+            self.db.insert(
+                {'id': submission.id, 'url': submission.url, 'author': submission.author.name, 'posted': False})
 
     def _post_exists(self, submission):
         post = Query()
         return len(self.db.search(post.id == submission.id)) != 0
 
     def get_post(self):
-        while self._lock:
-            post = Query()
-            popped = self.db.search(post.posted == False)
+        post = Query()
+        popped = self.db.search(post.posted == False)
+        if popped:
             self.db.update({'posted': True}, popped[0].get('id') == post.id)
             return popped[0]

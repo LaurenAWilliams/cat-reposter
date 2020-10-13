@@ -14,6 +14,8 @@ def _get_image_from_url(url):
 
 
 def is_cat(image_url):
+    if ".gif" in image_url:
+        return False
     image = _get_image_from_url(image_url)
     detector = cv2.CascadeClassifier(HAAR_CASCADE_LOC)
     locations = detector.detectMultiScale(image, scaleFactor=1.2, minNeighbors=3, minSize=(75, 75))

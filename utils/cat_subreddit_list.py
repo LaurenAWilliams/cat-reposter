@@ -7,4 +7,15 @@ CAT_SUBREDDIT_LIST = [
     "CatLoaf",
     "CatsInBusinessAttire",
     "Aww",
+    "Meow_Irl",
+    "IllegallySmolCats",
+    "TruckerCats",
+    "Kitten",
+    "CatPics",
+    "CatPictures",
+    "CatsStandingUp",
+    "catsareliquid",
+    "CatFaceplant",
+    "CatLoaf",
+    "CatBun"
 ]
