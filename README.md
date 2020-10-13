@@ -4,7 +4,7 @@ Scrape reddit for cat pictures, verify it's a cat using ML and post the picture 
 ## Running the bot
 Make a `.env` file at the root of the directory.
 
-Entries you'll need:
+Environment variables you'll need:
 
 `TWITTER_API_KEY` \
 `TWITTER_API_SECRET_KEY` \
@@ -16,9 +16,10 @@ Entries you'll need:
 `REDDIT_PASSWORD`
 
 
-These values can be obtained by making a Reddit app and a Twitter app.
+These values can be obtained by making a [Reddit app](https://www.reddit.com/prefs/apps/) and a [Twitter app](https://developer.twitter.com/en) through their respective developer portals.
 ### Docker
-```docker build -t cat-reposter .```
+```docker build -t cat-reposter .``` \
+```docker run cat-reposter```
 
 ### Python 3 on local OS
 ```python main.py```
