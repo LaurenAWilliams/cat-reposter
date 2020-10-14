@@ -1,15 +1,23 @@
 import time
+import logging
 from utils.reddit import Reddit
 from utils.twitter import Twitter
 from threading import Thread
 
+LOGGER = logging.getLogger(__name__)
+
 
 def main():
+    logging.basicConfig(filename='cat-reposter.log', level=logging.INFO,
+                        format='%(asctime)s %(threadName)s %(message)s',
+                        datefmt='%m/%d/%Y %I:%M:%S %p')
     reddit_runner = RedditRunner()
     twitter_runner = TwitterRunner()
     reddit_runner.start()
+    LOGGER.info("RedditRunner started")
     time.sleep(10)
     twitter_runner.start()
+    LOGGER.info("TwitterRunner started")
     while True:
         pass
 

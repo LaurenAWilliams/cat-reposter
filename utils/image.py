@@ -1,9 +1,11 @@
+import logging
 import numpy
 import urllib.request
-import urllib.error
 import cv2
 
 HAAR_CASCADE_LOC = 'utils/files/haarcascade_frontalcatface_extended.xml'
+
+LOGGER = logging.getLogger(__name__)
 
 
 def _get_image_from_url(url):
@@ -13,8 +15,9 @@ def _get_image_from_url(url):
             with urllib.request.urlopen(url) as resp:
                 raw_image = numpy.asarray(bytearray(resp.read()), dtype="uint8")
                 retry = False
-        except urllib.error.URLError:
+        except urllib.error.URLError as error:
             retry = True
+            LOGGER.error("Error raised reading response from urllib: %s" % error)
     image = cv2.imdecode(raw_image, cv2.IMREAD_COLOR)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     return gray

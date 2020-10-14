@@ -1,11 +1,14 @@
 import praw
 import os
+import logging
 from dotenv import load_dotenv
 from utils.flat_file_database import FlatFileDB
 from utils.image import is_cat
 from utils.cat_subreddit_list import CAT_SUBREDDIT_LIST
 
 load_dotenv()
+
+LOGGER = logging.getLogger(__name__)
 
 
 class Reddit:
@@ -22,6 +25,7 @@ class Reddit:
     def _get_top_10_submissions(self, subreddit, db):
         for submission in self.reddit.subreddit(subreddit).top(limit=10, time_filter="day"):
             if self._is_image_submission(submission) and is_cat(submission.url):
+                LOGGER.info("Submission found in reddit: id=%s, url=%s" % (submission.url, submission.id))
                 db.insert_post(submission)
 
     def check_subreddits(self):
